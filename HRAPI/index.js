@@ -15,6 +15,34 @@ app.get('/' , async(requestAnimationFrame,res)=>{
     }
 });
 
+app.get('/employees', async (req, res) => {
+    try {
+        const result = await pool.query(
+            'select * from employees'
+
+        );
+        res.json(result.rows);
+    } catch (err) {
+        res.status(500).json({ Error: err.message });
+    }
+});
+
+
+
+app.get('/country', async (req, res) => {
+    try {
+        const result = await pool.query(
+            'select * from countries'
+
+        );
+        res.json(result.rows);
+    } catch (err) {
+        res.status(500).json({ Error: err.message });
+    }
+});
+
+
+
 app.get('/locations-last-four-chars', async (req, res) => {
     try {
         const result = await pool.query(`
